@@ -1,0 +1,6 @@
+%YAML:1.0
+TargetDescription:
+   package: label_detection_example
+   path: "image/model1.jpg"
+   md5: "060b6187507de7223904bad4be0ba403"
+   contour: [ [ 265, 240 ], [ 510, 240 ], [ 510, 560 ], [ 265, 560 ] ]
