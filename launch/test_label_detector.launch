@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="label_detection" type="test_label_detector" name="test_label_detector" args="$(find label_detection_example)/image/scene1.jpg" output="screen">
+        <rosparam subst_value="true">
+            reference_directory: $(find label_detection_example)/result_file/
+            parameter_file: $(find label_detection_example)/param_file/sift.yml
+            use_simple_feature: false
+            match_stripes: -1.
+            match_ratio: 0.015
+        </rosparam>
+    </node>
+</launch>
