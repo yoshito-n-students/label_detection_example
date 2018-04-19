@@ -23,7 +23,7 @@ How to use label_detection and affine_invariant_features
    ```
 1. Run an example
    ```
-   roslaunch label_detection_example test_label_detector.launch
+   roslaunch label_detection_example offline_label_detection.launch
    ```
    * this will show a scene image with 5 labels (a logo of Tohoku University, etc) detected
    
@@ -42,14 +42,14 @@ How to use label_detection and affine_invariant_features
    rosrun affine_invariant_features extract_features <parameter_file> <target_file> <output_result_file>
    ...
    ```
-1. Modify test_label_detector.launch
+1. Modify offline_label_detection.launch
    * args: your scene image that may contain targets
    * reference_directory: a directory where your target result files locate
    * parameter_file: your feature parameter file
 1. Run
    ```
-   roslaunch label_detection_example test_label_detector.launch
+   roslaunch label_detection_example offline_label_detection.launch
    ```
    * if not detected, try smaller match_ratio
    * for less CPU usage, try positive match_stripes less than the number of CPUs
-   * for online detection, try label_detection_node in the label_detection package
+   * for online detection, try label_detection_node in the label_detection package. [launch/online_label_detection.launch](launch/online_label_detection.launch) may be helpful.
