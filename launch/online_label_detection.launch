@@ -1,0 +1,13 @@
+<launch>
+    <node name="label_detection_node" pkg="label_detection" type="label_detection_node" output="screen">
+        <remap from="image_raw" to="camera/image_raw"/>
+        <remap from="image_out" to="image_label"/>
+        <rosparam subst_value="true">
+            image_transport: raw
+            reference_directory: $(find label_detection_example)/result_file/
+            parameter_file: $(find label_detection_example)/param_file/affine_sift.yml
+            match_stripes: -1.
+            match_ratio: 0.015
+        </rosparam>
+    </node>
+</launch>
