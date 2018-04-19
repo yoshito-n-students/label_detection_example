@@ -4,6 +4,7 @@
         <remap from="image_out" to="image_label"/>
         <rosparam subst_value="true">
             image_transport: raw
+            desired_encoding: bgr8
             reference_directory: $(find label_detection_example)/result_file/
             parameter_file: $(find label_detection_example)/param_file/affine_sift.yml
             match_stripes: -1.
