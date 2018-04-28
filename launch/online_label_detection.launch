@@ -1,7 +1,10 @@
 <launch>
+    <!-- -->
+    <!-- label detection -->
     <node name="label_detection_node" pkg="label_detection" type="label_detection_node" output="screen">
-        <remap from="image_raw" to="camera/image_raw"/>
+        <remap from="image_raw" to="image_raw"/>
         <remap from="image_out" to="image_label"/>
+        <remap from="labels_out" to="labels"/>
         <rosparam subst_value="true">
             image_transport: raw
             desired_encoding: bgr8
@@ -9,6 +12,20 @@
             parameter_file: $(find label_detection_example)/param_file/affine_sift.yml
             match_stripes: -1.
             match_ratio: 0.015
+            republish_image: true
         </rosparam>
+    </node>
+    <!-- -->
+    <!-- detection result drawer -->
+    <node name="label_drawing_node" pkg="nodelet" type="nodelet" 
+          args="standalone object_drawer/ObjectDrawer" output="screen">
+        <remap from="image_raw" to="image_label"/>
+        <remap from="objects_in" to="labels"/>
+        <remap from="image_out" to="image_annotated"/>
+    </node>
+    <!-- -->
+    <!-- detection result viewer -->
+    <node name="label_view" pkg="image_view" type="image_view" output="screen">
+        <remap from="image" to="image_annotated"/>
     </node>
 </launch>
