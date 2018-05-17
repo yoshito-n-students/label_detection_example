@@ -1,7 +1,11 @@
 <launch>
     <!-- -->
-    <!-- label detection -->
-    <node name="label_detection_node" pkg="label_detection" type="label_detection_node" output="screen">
+    <!-- label detection + drawing -->
+    <node name="label_node" pkg="nodelet" type="nodelet" args="manager" output="screen"/>
+    <!-- -->
+    <!-- label detector loader -->
+    <node name="label_detector_loader" pkg="nodelet" type="nodelet" 
+          args="load label_detection/LabelDetector label_node" output="screen">
         <remap from="image_raw" to="image_raw"/>
         <remap from="image_out" to="image_label"/>
         <remap from="labels_out" to="labels"/>
@@ -16,9 +20,9 @@
         </rosparam>
     </node>
     <!-- -->
-    <!-- detection result drawer -->
-    <node name="label_drawing_node" pkg="nodelet" type="nodelet" 
-          args="standalone object_drawer/ObjectDrawer" output="screen">
+    <!-- detection result drawer loader -->
+    <node name="label_drawer_loader" pkg="nodelet" type="nodelet" 
+          args="load object_drawer/ObjectDrawer label_node" output="screen">
         <remap from="image_raw" to="image_label"/>
         <remap from="objects_in" to="labels"/>
         <remap from="image_out" to="image_annotated"/>
